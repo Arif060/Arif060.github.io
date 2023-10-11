@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bergabung untuk menerima Notif All about barca</title>
+    <style>
+        body {
+            background-color: #2196F3; /* Warna latar belakang */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            color: #fff; /* Warna teks */
+        }
+        form {
+            background-color: #fff; /* Warna latar belakang formulir */
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            text-align: left;
+            color: #333; /* Warna teks label */
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        input[type="submit"] {
+            background-color: #2196F3; /* Warna tombol submit */
+            color: #fff; /* Warna teks tombol submit */
+        }
+    </style>
+</head>
+<body>
+
+<h2>Bergabung dengan Fanbase Barcelona</h2>
+
+<form method="post" action="proses_pendaftaran.php">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required>
+
+    <label for="birthdate">Tanggal Lahir:</label>
+    <input type="date" name="birthdate" id="birthdate" required>
+
+    <input type="submit" value="Bergabung">
+</form>
+
+</body>
+</html>

@@ -1,37 +1,41 @@
 <?php
+session_start();
 
-date_default_timezone_set('Asia/Makassar'); // Set the timezone to Makassar
-
-$db = new mysqli("localhost", "username", "password", "mydatabase");
-
-if ($db->connect_error) {
-    die("Koneksi database gagal: " . $db->connect_error);
+if (isset($_SESSION['user'])) {
+    header("Location: welcome.php");
+    exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama = $_POST['nama'];
-    $umur = $_POST['umur'];
-    $nomor_punggung = $_POST['nomor_punggung'];
-    $negara = $_POST['negara'];
+    $username = "username";  // Ganti dengan username sesungguhnya
+    $password = "password";  // Ganti dengan password sesungguhnya
 
-    $nama = mysqli_real_escape_string($db, $nama);
-    $umur = mysqli_real_escape_string($db, $umur);
-    $nomor_punggung = mysqli_real_escape_string($db, $nomor_punggung);
-    $negara = mysqli_real_escape_string($db, $negara);
+    $input_username = $_POST['username'];
+    $input_password = $_POST['password'];
 
-
-    $date = DateTime::createFromFormat('d-m-Y', $_POST['date']);
-    $formattedDate = $date->format('Y-m-d');
-
-    
-    $query = "INSERT INTO pemain (nama, umur, nomor_punggung, negara, tanggal) VALUES ('$nama', '$umur', '$nomor_punggung', '$negara', '$formattedDate')";
-
-    if ($db->query($query) === true) {
-        header("Location: index.php");
+    if ($input_username === $username && $input_password === $password) {
+        $_SESSION['user'] = $username;
+        header("Location: welcome.php");
+        exit;
     } else {
-        echo "Error: " . $query . "<br>" . $db->error;
+        echo "Username atau password salah.";
     }
 }
-
-$db->close();
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form method="POST" action="">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required><br><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
